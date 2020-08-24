@@ -1,7 +1,7 @@
 # 211Z-Sizzle-Code
 This is the VEX Tower Takeover (2019 - 2020) code for 211Z in VexCode Pro V5 Text! It includes pre-autonomous, autonomous routine with a prototype PID autonomous function, and driver control!
 
-This repository represents the team 211Z from Sir Winston Churchill Secondary School (St. Catharines, Canada).
+This repository represents the team 211Z from Sir Winston Churchill Secondary School (St. Catharines, Ontario).
 
 
 ## Table of Contents
@@ -28,8 +28,38 @@ This repository represents the team 211Z from Sir Winston Churchill Secondary Sc
 
 ## Features
 * Contains all V5 Smart Motors set up
-* Driver Control and Autonomous for Unprotected Red Zone
+```
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// RightBackDrive       motor         17              
+// RightFrontDrive      motor         18              
+// LeftBackDrive        motor         14              
+// LeftFrontDrive       motor         20              
+// TrayTilter           motor         15              
+// IntakeArm            motor         1               
+// RightIntake          motor         13              
+// LeftIntake           motor         10 
+```
+* Autonomous for Unprotected Red Zone
 * PID For Tray Tilter and PID prototype for drive base in autonomous 
+```
+ColumnError = pow((TrayTilter.rotation(rotationUnits::deg) - ColumnDesired),3); //This calculates the error from desired value and current value
+ColumnDerivative = ColumnError - ColumnPreviousError; //This find the difference between the current error and previous error 
+if (((TrayTilter.rotation(rotationUnits::deg) - ColumnDesired) < 5.0) && ((TrayTilter.rotation(rotationUnits::deg) - ColumnDesired) > -5.0)){
+   ColumnIntegral = 0; //We don't need integral if the error is within +/- 5
+}
+else { //If It isn't within +/- 5
+   ColumnIntegral += ColumnError; 
+}
+TrayTilter.spin(reverse,(ColumnError * ColumnKP + ColumnDerivative * ColumnKD + ColumnIntegral * ColumnKI), voltageUnits::volt);
+```
+* Tank drive joystick/driver control 
+```
+LeftBackDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() + (Controller1.Axis4.value()*0.3)), vex::velocityUnits::pct);
+LeftFrontDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() + (Controller1.Axis4.value()*0.3)), vex::velocityUnits::pct);
+RightBackDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() - (Controller1.Axis4.value()*0.3)), vex::velocityUnits::pct);
+RightFrontDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() - (Controller1.Axis4.value()*0.3)), vex::velocityUnits::pct);
+```
 
 
 ## Contributors
