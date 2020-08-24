@@ -1,7 +1,7 @@
 # 211Z-Sizzle-Code
 This is the VEX Tower Takeover (2019 - 2020) code for 211Z in VexCode Pro V5 Text! It includes pre-autonomous, autonomous routine with a prototype PID autonomous function, and driver control!
 
-This repository belongs to team 211Z from Sir Winston Robotics in Sir Winston Churchill Secondary School (St. Catharines, Canada).
+This repository represents the team 211Z from Sir Winston Churchill Secondary School (St. Catharines, Canada).
 
 
 ## Table of Contents
