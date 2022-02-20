@@ -70,4 +70,4 @@ RightFrontDrive.spin(vex::directionType::fwd, (Controller1.Axis3.value() - (Cont
 
 
 ## Contact
-[Email](mailto:patelsag@students.dsbn.org) | [Website](https://sagarpatel211.github.io/)
+[Email](mailto:sa24pate@uwaterloo.ca) | [Website](https://sagarpatel211.github.io/)
